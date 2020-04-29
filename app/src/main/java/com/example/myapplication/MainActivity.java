@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+    private Button button;
     BufferedReader reader = null;
 
 
@@ -53,6 +56,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Log.d("Click: ","on");
+
+                BroadcastReceiver broadcastReceiver = new BroadcastCPU();
+                IntentFilter filter = new IntentFilter("com.example.myapplication");
+                registerReceiver(broadcastReceiver, filter);
+
+            }
+        });
 
 
 
